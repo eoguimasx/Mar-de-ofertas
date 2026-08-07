@@ -61,5 +61,19 @@ Acesse `http://localhost:8000` (ou `:8080`). O `service worker` só funciona em 
 - `SUPABASE_ANON_KEY` é "publica" no sentido de ser a chave client-side para leitura pública, mas é melhor mantê-la em variáveis de ambiente se desejar trocá-la sem push de código.
 - Para mudanças no `sw.js` (cache): incremente a versão dentro do arquivo (cache name) para forçar atualização do cache nos clientes.
 
+9) Injetando variáveis de ambiente (`env.js`) — recomendado
+- No painel do Vercel > Settings > Environment Variables, adicione `SUPABASE_URL` e `SUPABASE_ANON_KEY` (Environment: Production).
+- Em Project Settings → General → Build & Development Settings, defina o *Build Command* para gerar `env.js` na raiz do projeto antes do deploy. Exemplo de comando (shell):
+
+```bash
+echo "window.__ENV__ = { SUPABASE_URL: '${SUPABASE_URL}', SUPABASE_ANON_KEY: '${SUPABASE_ANON_KEY}' };" > env.js
+```
+
+Isso cria um arquivo `env.js` com as variáveis necessárias; `assets/js/main.js` procura `window.__ENV__` automaticamente e faz fallback para os valores embarcados quando não existe `env.js`.
+
+Observações:
+- Não comite `env.js` com chaves reais no repositório. Use `env.example.js` como modelo local.
+- Após deploy, verifique `env.js` na URL `https://<seu-site>/env.js` (deve retornar 200 e conter o objeto `window.__ENV__`).
+
 ---
 Se quiser, eu posso: (a) criar um `README.md` atualizado combinando estas instruções, (b) abrir o painel do Vercel com instruções passo-a-passo, ou (c) ajustar o código para ler `SUPABASE_ANON_KEY` de `process.env` e documentar a mudança. O que prefere?

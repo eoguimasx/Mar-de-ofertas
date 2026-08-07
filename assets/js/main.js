@@ -11,11 +11,14 @@ const KEY = 'mardeofertas_v2';
    · anon public  →  SUPABASE_ANON_KEY
    (a chave "anon" é feita pra ficar exposta no site — a escrita é
     protegida pela senha do painel, verificada no servidor)              */
-const SUPABASE_URL      = 'https://olskcquzcrtkenvugvse.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sc2tjcXV6Y3J0a2VudnVndnNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0NTg4NDgsImV4cCI6MjEwMTAzNDg0OH0.P9FMs4VgTQroS0-oqUOWBcS9NdncITo-GsqAYIoibn8';
+// Prefer values injected at runtime via a small `env.js` that defines `window.__ENV__`.
+// Fallback to the hardcoded values for backward compatibility.
+const _ENV = (window && (window.__ENV__ || window.__env__)) || {};
+const SUPABASE_URL      = String(_ENV.SUPABASE_URL || 'https://olskcquzcrtkenvugvse.supabase.co');
+const SUPABASE_ANON_KEY = String(_ENV.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sc2tjcXV6Y3J0a2VudnVndnNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0NTg4NDgsImV4cCI6MjEwMTAzNDg0OH0.P9FMs4VgTQroS0-oqUOWBcS9NdncITo-GsqAYIoibn8');
 
 const supabaseAtivo = () =>
-  SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.length > 20;
+  SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY.length > 20;
 
 /* chamada base com timeout — sem internet, falha em 12s em vez de travar */
 async function sbFetch(caminho, opts = {}, timeoutMs = 12000){
