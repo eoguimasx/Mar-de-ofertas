@@ -1,0 +1,40 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Env
+.env
+.env.local
+
+# Build
+dist/
+build/
+
+# Temp
+*.tmp
+*.bak
+*.log
+
+# Local database
+*.sqlite
+
+# Images cached/generated
+assets/images/cache/
+
+# IDE
+.idea/
+
+# SASS map
+.sass-cache/
