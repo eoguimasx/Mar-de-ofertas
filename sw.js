@@ -1,5 +1,6 @@
 const CACHE_NAME = 'mardeofertas-v1';
 const PRECACHE_URLS = [
+  'index.html',
   'Mar de Ofertas - 2026-08.html',
   'assets/css/main.css',
   'assets/js/main.js',
@@ -41,7 +42,7 @@ self.addEventListener('fetch', event => {
     }).catch(()=>{
       // network failed: try to serve the main HTML for navigation requests
       if (event.request.mode === 'navigate' || (event.request.headers.get('accept') || '').includes('text/html')){
-        return caches.match('Mar de Ofertas - 2026-08.html');
+        return caches.match('index.html') || caches.match('Mar de Ofertas - 2026-08.html');
       }
     }))
   );
