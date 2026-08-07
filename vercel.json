@@ -37,6 +37,6 @@
     { "source": "/manifest.webmanifest", "destination": "/manifest.webmanifest" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/index.html", "destination": "/index.html" },
-    { "source": "/*", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
