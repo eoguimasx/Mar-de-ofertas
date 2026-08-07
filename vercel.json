@@ -31,9 +31,12 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "^/(?!assets/|_next/|api/|sw.js|favicon.svg|manifest.webmanifest|robots.txt|index.html).*$",
-      "destination": "/index.html"
-    }
+    { "source": "/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/sw.js", "destination": "/sw.js" },
+    { "source": "/favicon.svg", "destination": "/favicon.svg" },
+    { "source": "/manifest.webmanifest", "destination": "/manifest.webmanifest" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/index.html", "destination": "/index.html" },
+    { "source": "/*", "destination": "/index.html" }
   ]
 }
