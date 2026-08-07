@@ -14,8 +14,12 @@ const KEY = 'mardeofertas_v2';
 // Prefer values injected at runtime via a small `env.js` that defines `window.__ENV__`.
 // Fallback to the hardcoded values for backward compatibility.
 const _ENV = (window && (window.__ENV__ || window.__env__)) || {};
-const SUPABASE_URL      = String(_ENV.SUPABASE_URL || 'https://olskcquzcrtkenvugvse.supabase.co');
-const SUPABASE_ANON_KEY = String(_ENV.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sc2tjcXV6Y3J0a2VudnVndnNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0NTg4NDgsImV4cCI6MjEwMTAzNDg0OH0.P9FMs4VgTQroS0-oqUOWBcS9NdncITo-GsqAYIoibn8');
+const SUPABASE_URL      = String(_ENV.SUPABASE_URL || '');
+const SUPABASE_ANON_KEY = String(_ENV.SUPABASE_ANON_KEY || '');
+
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY){
+  console.warn('Supabase env not found: create /env.js or set SUPABASE_URL and SUPABASE_ANON_KEY in Vercel');
+}
 
 const supabaseAtivo = () =>
   SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY.length > 20;

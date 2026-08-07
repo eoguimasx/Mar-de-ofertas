@@ -17,6 +17,7 @@ __pycache__/
 # Env
 .env
 .env.local
+env.js
 
 # Build
 dist/

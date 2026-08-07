@@ -75,5 +75,15 @@ Observações:
 - Não comite `env.js` com chaves reais no repositório. Use `env.example.js` como modelo local.
 - Após deploy, verifique `env.js` na URL `https://<seu-site>/env.js` (deve retornar 200 e conter o objeto `window.__ENV__`).
 
+Local (desenvolvimento)
+- Para rodar localmente sem adicionar variáveis de ambiente, crie `env.js` a partir do modelo:
+
+```bash
+cp env.example.js env.js
+# edite env.js e coloque suas chaves de desenvolvimento (não comite)
+```
+
+No repositório, `env.js` está listado no `.gitignore` para evitar commits acidentais de chaves.
+
 ---
 Se quiser, eu posso: (a) criar um `README.md` atualizado combinando estas instruções, (b) abrir o painel do Vercel com instruções passo-a-passo, ou (c) ajustar o código para ler `SUPABASE_ANON_KEY` de `process.env` e documentar a mudança. O que prefere?
